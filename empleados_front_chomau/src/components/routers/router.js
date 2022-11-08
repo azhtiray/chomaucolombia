@@ -1,26 +1,24 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from "../login/login"
+import Inicio from "../index/index";
 
-export default function AppRouter() {
+export default function AppRoutes() {
 
     return (
         <Router>
             <Routes>
-                <Route exact path="/login" element={<Login />} /></Route>
-                <Route exact path="/Home" element={<Home />} /></Route>
+                <Route exact path="/login" element={<Login />}> </Route>
+                <Route exact path="/index" element={<Inicio />}> </Route>
+                <Route exact path="/" element={<Inicio />}> </Route>
+
+                <Route path="/*" element={(
+                <h1 style={{marginTop:300}}>
+                    404 <br/> Página no encontrada
+                </h1>
+               )}></Route>
+               
+               
             </Routes>
         </Router>);
-}
-
-function Home{
-    return(
-        <div>
-            <h2 style={{marginTop:300}}>
-                Home
-            </h2>
-
-
-        </div>
-    )
 }
