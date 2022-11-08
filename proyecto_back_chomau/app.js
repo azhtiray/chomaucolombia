@@ -6,6 +6,8 @@ var logger = require('morgan');
 var database = require("./config/database");
 var auth = require("./auth/main_auth");  // AUTENTIFICAR
 
+var cors = require("cors");
+
 var empleadosRouter = require('./routes/empleados.router');
 var usuariosRouter = require('./routes/usuario.router');
 var productosRouter = require('./routes/productos.router');
@@ -18,6 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors());
 
 
 //Mongo Connection
