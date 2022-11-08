@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Nav, Navbar, Dropdown, DropdownButton, Row, Col } from "react-bootstrap";  //La col de columna aun no se ha definido como variable
+import { Container, Nav, Navbar, Dropdown, DropdownButton, Row,  } from "react-bootstrap";  //La col de columna aun no se ha definido como variable
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import './navbar.css';
