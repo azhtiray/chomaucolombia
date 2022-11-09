@@ -2,34 +2,54 @@ import React from 'react';
 import axios from 'axios';
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
 //import APIHOST from "../../app.json";
+import app from "../../app.json";
 import './login.css';
+import { isNull } from "util";
+import Cookies from 'universal-cookie';
+//import { resolve } from 'path';
+import { CalcularExpirarSesion } from '../helper/helper';
 
+
+const { host } = app;
+
+const cookies = new Cookies();
 
 export default class login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            usuario: '',
-            pass: ''
+            usuario: "",
+            pass: "",
 
         };
     }
 
     iniciarSesion() {
-        axios.post(`http://localhost:3001/usuarios/login`, {  
-            usuario: this.state.usuario,
-            pass: this.state.pass,
-        })
+        axios
+
+            .post(`${host}/usuarios/login`, {  //actualizar puerto en:front-app-json, back-bin-www
+                usuario: this.state.usuario,
+                pass: this.state.pass,
+            })
 
             .then((response) => {
-                console.log(response);
+                if (isNull(response.data.token)) {
+                    alert('Usuario y/o contraseña invalidos');
 
-        })
+                }else {                    
+                    cookies.set('_s', response.data.token, {
+                        path: '/',
+                        expires: CalcularExpirarSesion(),
+                    });
+                }
+            })
             .catch((err) => {
-            console.log(err);
-        });
+                console.log(err);
+            });
+        // alert(`usuario: ${this.state.usuario} - password: ${this.state.pass}`);
     }
-    // alert(`usuario: ${this.state.usuario} - password: ${this.state.pass}`);
+
+
 
     render() {
         return (
