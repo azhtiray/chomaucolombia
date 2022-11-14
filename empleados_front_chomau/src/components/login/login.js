@@ -8,6 +8,8 @@ import { isNull } from "util";
 import Cookies from 'universal-cookie';
 //import { resolve } from 'path';
 import { CalcularExpirarSesion } from '../helper/helper';
+import Loading from '../loading/loading';
+
 
 
 const { host } = app;
@@ -18,6 +20,7 @@ export default class login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            loading: false,
             usuario: "",
             pass: "",
 
@@ -25,6 +28,9 @@ export default class login extends React.Component {
     }
 
     iniciarSesion() {
+
+        this.setState({loading:true});
+
         axios
 
             .post(`${host}/usuarios/login`, {  //actualizar puerto en:front-app-json, back-bin-www
@@ -36,15 +42,18 @@ export default class login extends React.Component {
                 if (isNull(response.data.token)) {
                     alert('Usuario y/o contraseña invalidos');
 
-                }else {                    
+                } else {
                     cookies.set('_s', response.data.token, {
                         path: '/',
                         expires: CalcularExpirarSesion(),
                     });
                 }
+
+                this.setState({loading:false});
             })
             .catch((err) => {
                 console.log(err);
+                this.setState({loading:false});
             });
         // alert(`usuario: ${this.state.usuario} - password: ${this.state.pass}`);
     }
@@ -54,6 +63,7 @@ export default class login extends React.Component {
     render() {
         return (
             <Container id="login-container">
+                <Loading show ={this.state.loading}/>
 
 
                 <Row>
