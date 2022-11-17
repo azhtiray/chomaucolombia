@@ -7,32 +7,32 @@ export default class Loading extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state ={
-            loading:false,
+        this.state = {
+            loading: false,
 
 
         }
     }
 
-    componentWillReceiveProps(nextProps){
-       if (nextProps.show !== this.state.show)
-       this.setState({show:nextProps.show});
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.show !== this.state.show)
+            this.setState({ show: nextProps.show });
     }
-   
-    render() { 
-        return ( 
+
+    render() {
+        return (
             <>
 
-           {this.state.show ?( 
-            <div id='loading-backdrop'>
-                
-                <Spinner animation="border" variant="primary" />
+                {this.state.show ? (
+                    <div id='loading-backdrop'>
 
-            </div>
-            ) : null}
+                        <Spinner animation="border" variant="primary" />
+
+                    </div>
+                ) : null}
 
             </>
-         );
+        );
     }
 }
- 
+

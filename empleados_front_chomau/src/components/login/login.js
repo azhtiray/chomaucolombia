@@ -29,7 +29,7 @@ export default class login extends React.Component {
 
     iniciarSesion() {
 
-        this.setState({loading:true});
+        this.setState({ loading: true });
 
         axios
 
@@ -42,18 +42,21 @@ export default class login extends React.Component {
                 if (isNull(response.data.token)) {
                     alert('Usuario y/o contraseña invalidos');
 
-                } else {
+                }
+                else {
                     cookies.set('_s', response.data.token, {
                         path: '/',
                         expires: CalcularExpirarSesion(),
                     });
+
+                    this.props.history.push(window.open('/empleados'));
                 }
 
-                this.setState({loading:false});
+                this.setState({ loading: false });
             })
             .catch((err) => {
                 console.log(err);
-                this.setState({loading:false});
+                this.setState({ loading: false });
             });
         // alert(`usuario: ${this.state.usuario} - password: ${this.state.pass}`);
     }
@@ -63,7 +66,7 @@ export default class login extends React.Component {
     render() {
         return (
             <Container id="login-container">
-                <Loading show ={this.state.loading}/>
+                <Loading show={this.state.loading} />
 
 
                 <Row>
