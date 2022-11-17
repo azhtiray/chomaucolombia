@@ -12,7 +12,7 @@ import Loading from '../loading/loading';
 
 
 
-const { host } = app;
+const { host } = app; //login, app.json, helper al final,
 
 const cookies = new Cookies();
 

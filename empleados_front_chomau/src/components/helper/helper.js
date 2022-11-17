@@ -1,8 +1,12 @@
 import { isUndefined } from "util";
 import axios from "axios";
 import Cookies from "universal-cookie/es6";
-const cookies = new Cookies();
+import app from "../../app.json";
 
+
+const { host } = app;
+
+const cookies = new Cookies();
 
 export function CalcularExpirarSesion() {
     const now = new Date().getTime();
@@ -10,26 +14,28 @@ export function CalcularExpirarSesion() {
     return new Date(newDate);
 }
 
-export function getSession(){
+export function getSession() {
 
     return isUndefined(cookies.get('_s')) ? false : cookies.get('_s')
 }
 
-function renovarSesion(){
+function renovarSesion() {
     const sesion = getSession();
-    if(!sesion) window.location.href ="/login";
+    if (!sesion) window.location.href = "/login";
 
-cookies.set("_s", sesion,{
-    path:"/",
-    expires: CalcularExpirarSesion(),
+    cookies.set("_s", sesion, {
+        path: "/",
+        expires: CalcularExpirarSesion(),
     });
     return sesion;
 }
 
-export const request ={
-    
-    get: function(url){
-        renovarSesion();
-        return axios.get(url);
-    }
-}
+export const request = {
+
+    get: function (services) {
+        let token = renovarSesion();
+        return axios.get(`${host}${services}`, {
+            headers: { Authorization: `Bearer ${token}` },
+        });
+    },
+};
