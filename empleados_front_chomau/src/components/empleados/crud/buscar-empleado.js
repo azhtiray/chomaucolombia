@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row } from 'react-bootstrap';
-import './empleados.css';
-import DataGrid from '../grid/grid';
+import '../empleados.css';
+import DataGrid from '../../grid/grid';
 
 const columns = [{
     dataField:'_id',
@@ -31,8 +31,6 @@ const columns = [{
 
 
 
-
-
 export default class EmpleadosBuscar extends React.Component {
     constructor(props) {
         super(props);
@@ -43,7 +41,7 @@ export default class EmpleadosBuscar extends React.Component {
     render() {
         return <Container id='empleados-buscar-container'>
             <Row>
-                <h1 style={{ marginTop: 100 }}>
+                <h1>
                     Buscar Empleados
                 </h1>
             </Row>

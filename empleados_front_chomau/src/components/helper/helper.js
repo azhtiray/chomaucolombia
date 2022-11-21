@@ -38,4 +38,12 @@ export const request = {
             headers: { Authorization: `Bearer ${token}` },
         });
     },
+
+
+    post: function (services,  data) {
+        let token = renovarSesion();
+        return axios.post(`${host}${services}`, data, {
+            headers: { Authorization: `Bearer ${token}` },
+        });
+    },
 };
