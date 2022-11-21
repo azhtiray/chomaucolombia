@@ -69,7 +69,7 @@ export default class EmpleadosCrear extends React.Component {
 
                         <Form.Group className="mb-3" controlId="formulario">
                             <Form.Label>Direccion</Form.Label>
-                            <Form.Control onChange={(e) => this.setValue("direecion", e.target.value)} />
+                            <Form.Control onChange={(e) => this.setValue("direccion", e.target.value)} />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formulario">
