@@ -10,8 +10,13 @@ export default class EmpleadosEditar extends React.Component {
         super(props);
         this.state = {
             idEmpleado: this.props.getIdEmpleado(),
-            redirect: false,                      // es rediret ò redirect
+            rediret: false,                      // es rediret 
             message: {
+                text: "",
+                show: false,
+            },
+            confirmation: {
+                title: "",
                 text: "",
                 show: false,
             },
@@ -44,7 +49,6 @@ export default class EmpleadosEditar extends React.Component {
                 this.setState({ loading: true });
             });
     }
-    
     setValue(inicio, value) {
         this.setState({
             empleado: {
@@ -53,9 +57,24 @@ export default class EmpleadosEditar extends React.Component {
             },
         });
     }
-    
+    guardarEmpleados() {
+        this.setState({ loading: true });
+        request
+            .put(`/empleados/${this.state.idEmpleado}`, this.state.empleado)
+            .then((response) => {
+                if (response.data.exito) {
+                    this.props.changeTab('buscar');
+                }
+                this.setState({ loading: false });
+
+            })
+            .catch((err) => {
+                console.error(err);
+                this.setState({ loading: true });
+            });
+    }
     onExitedMessage() {
-        if (this.state.redirect) this.props.changeTab('buscar');         // es rediret ò redirect
+        if (this.state.rediret) this.props.changeTab('buscar');         // es rediret 
     }
     render() {
         return (
@@ -75,33 +94,48 @@ export default class EmpleadosEditar extends React.Component {
                     <Form>
                         <Form.Group className="mb-3" controlId="formbasic">
                             <Form.Label>Nombres</Form.Label>
-                            <Form.Control onChange={(e) => this.setValue("nombres", e.target.value)} />
+                            <Form.Control
+                                value={this.state.empleado.nombres}
+                                onChange={(e) => this.setValue("nombres", e.target.value)} />
 
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formbasic">
                             <Form.Label>Apellidos</Form.Label>
-                            <Form.Control onChange={(e) => this.setValue("apellidos", e.target.value)} />
+                            <Form.Control
+                                value={this.state.empleado.apellidos}
+                                onChange={(e) => this.setValue("apellidos", e.target.value)} />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formbasic">
                             <Form.Label>Direccion</Form.Label>
-                            <Form.Control onChange={(e) => this.setValue("direccion", e.target.value)} />
+                            <Form.Control
+                                value={this.state.empleado.direccion}
+                                onChange={(e) => this.setValue("direccion", e.target.value)} />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formbasic">
                             <Form.Label>Telefono</Form.Label>
-                            <Form.Control onChange={(e) => this.setValue("telefono", e.target.value)} />
+                            <Form.Control
+                                value={this.state.empleado.telefono}
+                                onChange={(e) => this.setValue("telefono", e.target.value)} />
                         </Form.Group>
 
 
                         <Form.Group className="mb-3" controlId="formbasic">
                             <Form.Label>Correo</Form.Label>
-                            <Form.Control onChange={(e) => this.setValue("mail", e.target.value)} />
+                            <Form.Control
+                                value={this.state.empleado.mail}
+                                onChange={(e) => this.setValue("mail", e.target.value)} />
                         </Form.Group>
 
-                        <Button variant="primary" onClick={() => console.log(this.guardarEmpleados())}>
-                            Guardar empleado
+                        {/* <Button variant="primary" 
+                        onClick={() => this.setState({
+                            confirmation: {...this.state.confirmation, show:true,}
+                        })}> */}
+
+                        <Button onClick={() => console.log(this.guardarEmpleados())}>
+                            Guardar Editar Empleado
                         </Button>
                     </Form>
                 </Row>

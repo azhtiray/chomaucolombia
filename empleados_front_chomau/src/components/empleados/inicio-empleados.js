@@ -13,19 +13,18 @@ export default class Empleados extends React.Component {
             _id: null,
         };
         this.changeTab = this.changeTab.bind(this);
-        this.setIdEmpleado = this.setIdEmpleado.bind(this);
-        this.getIdEmpleado = this.getIdEmpleado.bind(this);
+        this.setIdEmpleado = this.setIdEmpleado.bind(this);         ///crear
+        this.getIdEmpleado = this.getIdEmpleado.bind(this);         ///buscar 
     }
     changeTab(tab) {
-        this.setState({ currentTab: tab });
+        this.setState({ currentTab: tab });             
     }
-    setIdEmpleado(id) {
+    setIdEmpleado(id) {                 
         this.setState({ _id: id });
     }
     getIdEmpleado() {
         return this.state._id;
     }
-
     render() {
         return (
             <Container id='empleados-container'>

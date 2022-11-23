@@ -38,19 +38,19 @@ export default class EmpleadosBuscar extends React.Component {
     componentDidMount() { }
 
     onClickEditButton(row) {
-        this.props.setIdEmpleado(row._id);
+        this.props.setIdEmpleado(row._id);     ///modificado this.props.setIdEmpleado(row._id);
         this.props.changeTab('Editar');
     }
     render() {
         return (
             <Container id='empleados-buscar-container'>
                 <Row>
-                    <h1>
-                        Buscar Empleados
-                    </h1>
+                    <h1>Buscar Empleados</h1>
                 </Row>
                 <Row>
-                    <DataGrid url="/empleados" columns={columns} showEditButton={true}
+                    <DataGrid url="/empleados" columns={columns} 
+                    showEditButton={true}
+                    onClickEditButton ={this.onClickEditButton}
                     />
                 </Row>
             </Container>
