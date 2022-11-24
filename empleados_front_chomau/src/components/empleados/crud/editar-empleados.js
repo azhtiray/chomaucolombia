@@ -3,8 +3,8 @@ import { Container, Row, Form, Button } from 'react-bootstrap';
 import '../empleados.css';
 import { request } from '../../helper/helper';
 import Loading from '../../loading/loading'
-import MessagePrompt from '../../prompt/mesage';
-import ConfirmationPrompt from '../../prompt/confirmation';
+import MessagePrompt from '../../prompts/mesage';
+import ConfirmationPrompts from '../../prompts/confirmation';
 
 export default class EmpleadosEditar extends React.Component {
     constructor(props) {
@@ -97,17 +97,17 @@ export default class EmpleadosEditar extends React.Component {
         );
     }
 
-
     render() {
         return (
             <Container id='empleados-editar-container'>
+
                 <MessagePrompt
                     text={this.state.message.text}
                     show={this.state.message.show}
                     duration={2500}
                     onExited={this.onExitedMessage}
                 />
-                <ConfirmationPrompt
+                <ConfirmationPrompts
                     show={this.state.confirmation.show}
                     title={this.state.confirmation.title}
                     text={this.state.confirmation.text}

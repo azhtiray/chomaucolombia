@@ -6,7 +6,7 @@ import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit/dist/rea
 import { request } from '../helper/helper';
 import Loading from '../loading/loading';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit,  } from '@fortawesome/free-solid-svg-icons'; //faTrash
+import { faEdit, faTrash, } from '@fortawesome/free-solid-svg-icons'; //faTrash
 import { isUndefined } from 'util';
 
 const { SearchBar } = Search;
@@ -18,10 +18,10 @@ export default class DataGrid extends React.Component {
             Loading: false,
             rows: [],
         };
-        if (this.props.showEditButton && !this.existsColumn("Editar"))
+        if (this.props.showEditButton && !this.existsColumn('Editar'))
             this.props.columns.push(this.getEditButton());
-        // if (this.props.showEditButton && !this.existsColumn('Editar'))
-        //     this.props.columns.push(this.getEditButton());
+        if (this.props.showDeleteButton && !this.existsColumn('Eliminar'))
+            this.props.columns.push(this.getDeleteButton());
     }
     componentDidMount() {
         this.getData();
@@ -41,11 +41,10 @@ export default class DataGrid extends React.Component {
                 console.log(error);
             });
     }
-    existsColumn(colText){
+    existsColumn(colText) {
         let col = this.props.columns.find((column) => column.text === colText);
-        return !isUndefined (col);
+        return !isUndefined(col);
     }
-
     getEditButton() {
         return {
             text: 'Editar',
@@ -53,6 +52,18 @@ export default class DataGrid extends React.Component {
                 return (
                     <Button onClick={() => this.props.onClickEditButton(row)}>
                         <FontAwesomeIcon icon={faEdit} />
+                    </Button>
+                );
+            },
+        };
+    }
+    getDeleteButton() {
+        return {
+            text: 'Eliminar',
+            formatter: (cell, row) => {
+                return (
+                    <Button onClick={() => this.props.onClickDeleteButton(row)}>
+                        <FontAwesomeIcon icon={faTrash} />
                     </Button>
                 );
             },

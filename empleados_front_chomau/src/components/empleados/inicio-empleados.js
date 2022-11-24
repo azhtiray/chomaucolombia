@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Nav, Row } from 'react-bootstrap';
 import "./empleados.css"
-import EmpleadosBuscar from './crud/buscar-empleado';
+import EmpleadosBuscar from './crud/buscar-empleados';
 import EmpleadosCrear from './crud/crear-empleados';
 import EmpleadosEditar from './crud/editar-empleados';
 

@@ -38,15 +38,12 @@ export const request = {
             headers: { Authorization: `Bearer ${token}` },
         });
     },
-
-
     post: function (services,  data) {
         let token = renovarSesion();
         return axios.post(`${host}${services}`, data, {
             headers: { Authorization: `Bearer ${token}` },
         });
     },
-    
     put: function (services, data) {
         let token = renovarSesion();
         return axios.put(`${host}${services}`, data, {
@@ -56,4 +53,12 @@ export const request = {
         });
       },
 
+      delete: function (services) {
+        let token = renovarSesion();
+        return axios.delete(`${host}${services}`,  {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        })
+      },
 };

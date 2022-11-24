@@ -2,14 +2,14 @@ import React from 'react';
 import { Container, Row, Form, Button } from 'react-bootstrap';
 import '../empleados.css';
 import { request } from '../../helper/helper';
-import Loading from '../../loading/loading'
-import MessagePrompt from '../../prompt/mesage';
+import Loading from '../../loading/loading';
+import MessagePrompt from '../../prompts/mesage';
 
 export default class EmpleadosCrear extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            redirect: false,                      // es rediret ò redirect
+            rediret: false,                      // es rediret ò redirect
             message: {
                 text: "",
                 show: false,
@@ -40,7 +40,7 @@ export default class EmpleadosCrear extends React.Component {
             .then((response) => {
                 if (response.data.exito) {
                     this.setState({
-                        redirect: response.data.exito,      // es rediret ò redirect
+                        rediret: response.data.exito,      // es rediret ò redirect
                         message: {
                             text: response.data.msg,
                             show: true,
@@ -55,7 +55,7 @@ export default class EmpleadosCrear extends React.Component {
             });
     }
     onExitedMessage() {
-        if (this.state.redirect) this.props.changeTab('buscar');         // es rediret ò redirect
+        if (this.state.rediret) this.props.changeTab('buscar');         // es rediret ò redirect
     }
     render() {
         return (
