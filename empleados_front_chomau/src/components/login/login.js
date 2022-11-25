@@ -11,7 +11,6 @@ import { CalcularExpirarSesion } from '../helper/helper';
 import Loading from '../loading/loading';
 
 
-
 const { host } = app; //login, app.json, helper al final,
 
 const cookies = new Cookies();
@@ -23,35 +22,28 @@ export default class login extends React.Component {
             loading: false,
             usuario: "",
             pass: "",
-
         };
     }
-
     iniciarSesion() {
 
         this.setState({ loading: true });
-
         axios
-
             .post(`${host}/usuarios/login`, {  //actualizar puerto en:front-app-json, back-bin-www
                 usuario: this.state.usuario,
                 pass: this.state.pass,
             })
-
             .then((response) => {
                 if (isNull(response.data.token)) {
                     alert('Usuario y/o contraseña invalidos');
-
                 }
                 else {
                     cookies.set('_s', response.data.token, {
                         path: '/',
                         expires: CalcularExpirarSesion(),
                     });
-
-                    this.props.history.push(window.open('/empleados'));
+                    this.props.history.push(('/empleados'));   // (window.open('/empleados'))----ABRE EN OTRA PESTAÑA
+                window.location.reload();
                 }
-
                 this.setState({ loading: false });
             })
             .catch((err) => {
@@ -60,15 +52,10 @@ export default class login extends React.Component {
             });
         // alert(`usuario: ${this.state.usuario} - password: ${this.state.pass}`);
     }
-
-
-
     render() {
         return (
             <Container id="login-container">
                 <Loading show={this.state.loading} />
-
-
                 <Row>
                     <h2>Iniciar Sesión</h2>
                 </Row>
@@ -85,32 +72,24 @@ export default class login extends React.Component {
                                 <Form.Label>Usuario</Form.Label>
                                 <Form.Control onChange={(e) =>
                                     this.setState({ usuario: e.target.value })} />
-
                                 {/* {this.state.usuario} */}
-
                             </Form.Group>
-
                             <Form.Group>
                                 <Form.Label>Contraseña</Form.Label>
                                 <Form.Control onChange={(e) =>
                                     this.setState({ pass: e.target.value })} />
                                 {/* {this.state.pass} */}
                             </Form.Group>
-
-
                             <Button variant="primary" style={{ marginTop: 20, width: '100%' }}
                                 onClick={() => {
                                     this.iniciarSesion();
-
                                 }}>
                                 Iniciar Sesión
-
                             </Button>
                         </Form>
                     </Col>
                 </Row>
             </Container>
-
         );
     }
 }
