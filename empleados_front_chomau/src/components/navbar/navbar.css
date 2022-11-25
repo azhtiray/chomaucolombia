@@ -11,3 +11,11 @@
     justify-content: center;
     margin-top: 5px;
 }
+#navbar{
+    background-color: #7fa9ff;
+}
+
+#dropdown-button {
+    background-color: #ff90ff;
+    border-color: #7fa9ff;
+}

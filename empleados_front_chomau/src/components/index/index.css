@@ -1,0 +1,31 @@
+#carrusel{
+    margin-top: 50px;
+}
+#footer{
+    background-color: #7fa9ff;
+    size: 200px;
+    margin-top: 60px;
+    height: 200px;
+    color: #ffffa1;
+}
+#Carousel-Caption{
+    text-align: center;
+    padding-bottom: 250px;
+    color: #ff90ff;
+}
+
+.titulo-footer{
+    color: #ff90ff;
+    padding: 30px 30px 30px 30px;
+}
+.titulo-slide{
+    font-size: 80px;
+}
+.titulo-parrafo-slide{
+    font-size: 30px;
+}
+.btn.btn-outline-secondary{
+    color: #ff90ff !important;
+    background-color: #ffffa1 !important;
+    border-color: #ff90ff;
+}

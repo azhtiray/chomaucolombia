@@ -128,7 +128,7 @@ export default class ProductosBuscar extends React.Component {
                 />
                 <Loading show={this.state.loading} />
                 <Row>
-                    <h1>Buscar Productos</h1>
+                    <h1 style={{color:"pink"}}>Buscar Productos</h1>
                 </Row>
                 <Row>
                     <DataGrid url="/productos" columns={columns}

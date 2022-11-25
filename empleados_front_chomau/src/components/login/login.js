@@ -80,7 +80,7 @@ export default class login extends React.Component {
                                     this.setState({ pass: e.target.value })} />
                                 {/* {this.state.pass} */}
                             </Form.Group>
-                            <Button variant="primary" style={{ marginTop: 20, width: '100%' }}
+                            <Button id="login-button" style={{ marginTop: 20, width: '100%' }}
                                 onClick={() => {
                                     this.iniciarSesion();
                                 }}>
